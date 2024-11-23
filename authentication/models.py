@@ -20,3 +20,13 @@ class User(models.Model):
 
     def __str__(self):
         return f'{self.first_name} {self.last_name}'
+    
+class Category(models.Model):
+    product_title = models.CharField(max_length=100)
+    product_image = models.CharField(max_length=100)
+    product_price = models.CharField(max_length=100)
+    product_description = models.TextField()
+    registration_date = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.product_title

@@ -35,7 +35,7 @@ def login(request):
             user = User.objects.get(email=email)
             
             if check_password(password, user.password):
-                return redirect('home')
+                return redirect('memberspage')
             else:
                 return render(request, 'login.html')
         except User.DoesNotExist:
@@ -45,3 +45,6 @@ def login(request):
         
     else:
         return render(request, 'login.html')
+
+def membersPage(request):
+    return render(request, "memberspage.html")
