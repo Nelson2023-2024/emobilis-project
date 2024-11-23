@@ -23,7 +23,7 @@ class User(models.Model):
     
 class Category(models.Model):
     product_title = models.CharField(max_length=100)
-    product_image = models.CharField(max_length=100)
+    product_image = models.CharField(max_length=255)
     product_price = models.CharField(max_length=100)
     product_description = models.TextField()
     registration_date = models.DateTimeField(auto_now_add=True)

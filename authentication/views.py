@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from authentication.models import User
+from authentication.models import User,Category
 from django.contrib.auth.hashers import make_password, check_password
 
 # Create your views here.
@@ -48,3 +48,9 @@ def login(request):
 
 def membersPage(request):
     return render(request, "memberspage.html")
+
+
+def pricing(request):
+    
+    courses = Category.objects.all()
+    return render(request, 'pricing.html', {"courses" : courses})
