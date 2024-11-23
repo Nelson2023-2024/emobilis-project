@@ -28,7 +28,20 @@ def register(request):
     
 def login(request):
     if request.method == "POST":
-        pass
+        email = request.POST['email']
+        password = request.POST['password']
+        
+        try:
+            user = User.objects.get(email=email)
+            
+            if check_password(password, user.password):
+                return redirect('home')
+            else:
+                return render(request, 'login.html')
+        except User.DoesNotExist:
+            # # User not found
+            # messages.error(request, "Invalid email or password.")
+            return render(request, 'login.html')
         
     else:
         return render(request, 'login.html')
