@@ -53,7 +53,17 @@ def login(request):
         return render(request, "login.html")
 
 
+def logout(request):
+    # Clear session data
+    try:
+        del request.session["user_id"]
+        del request.session["user_name"]
+        del request.session["user_email"]
+    except KeyError:
+        pass  # In case the session data does not exist
 
+    # Redirect to login page or home page
+    return redirect("login")  # or replace with another URL if needed
 
 def membersPage(request):
     # Check if the user is logged in
