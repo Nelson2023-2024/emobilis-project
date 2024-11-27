@@ -14,6 +14,18 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
         integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Bootstrap CSS -->
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- Popper.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
+
+<!-- Bootstrap JS -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 
 </head>
 
@@ -55,6 +67,10 @@
                 <li><a href="./pricing.php">Courses</a></li>
                 <li><a href="#">Contact</a></li>
                 <li style="background: red; padding:1rem ; border-radius:10px;"><a href="./logout.php">Logout</a></li>
+                <li>    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                        Update profile
+                    </button></li>
             </ul>
 
             
@@ -117,6 +133,7 @@
             </div>
     </section>
 
+
     <div class="subscribe">
         <h2>Stay up to date with WebDX offers and news</h2>
         <form action="" class="subscribe-box">
@@ -129,7 +146,85 @@
         &copy; All rights reserved by Nelson 2023 <br>
         Made with <span>&hearts;</span> by Nelson
     </div>
+
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Update Profile</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="">
+                <div class="modal-body">
+                    <!-- First and Last Name -->
+                    <div class="form-row mb-3">
+                        <div class="col">
+                            <label for="first_name" class="form-label">First Name</label>
+                            <input id="first_name" name="fname" type="text" class="form-control" placeholder="First name">
+                            <small id="first_error" class="text-danger"></small>
+                        </div>
+                        <div class="col">
+                            <label for="last_name" class="form-label">Last Name</label>
+                            <input id="last_name" name="lname" type="text" class="form-control" placeholder="Last name">
+                            <small id="last_error" class="text-danger"></small>
+                        </div>
+                    </div>
+
+                    <!-- Email -->
+                    <div class="form-group mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input id="email" name="email" type="email" class="form-control" placeholder="Email">
+                        <small id="email_error" class="text-danger"></small>
+                    </div>
+
+                    <!-- Phone Number -->
+                    <div class="form-group mb-3">
+                        <label for="phone" class="form-label">Phone Number</label>
+                        <input id="phone" name="phoneNo" type="text" class="form-control" placeholder="Phone number">
+                        <small id="phone_error" class="text-danger"></small>
+                    </div>
+
+                    <!-- Gender -->
+                    <div class="form-group mb-3">
+                        <label class="form-label">Gender</label>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="gender" id="maleRadio" value="male">
+                            <label class="form-check-label" for="maleRadio">Male</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="gender" id="femaleRadio" value="female">
+                            <label class="form-check-label" for="femaleRadio">Female</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="gender" id="otherRadio" value="other">
+                            <label class="form-check-label" for="otherRadio">Others</label>
+                        </div>
+                        <small id="gender_error" class="text-danger"></small>
+                    </div>
+
+                    <!-- Password -->
+                    <div class="form-group mb-3">
+                        <label for="password1" class="form-label">Password</label>
+                        <input id="password1" name="pass1" minlength="8" type="password" class="form-control" placeholder="Password">
+                        <small class="form-text text-muted">Enter a minimum of 8 characters</small>
+                        <small id="password1_error" class="text-danger"></small>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
     <script src="./Scripts/common.js"></script>
+
 
 
 
