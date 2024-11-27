@@ -68,24 +68,50 @@ def logout(request):
 def membersPage(request):
     # Check if the user is logged in
     if "user_id" not in request.session:
-        return redirect("login")  # Redirect to the login page if not logged in
+        return redirect("login")  # Redirect to login page if not logged in
 
     # Retrieve session data
     user_id = request.session.get("user_id")
+    
+    try:
+        # Fetch the user data from the database
+        user = User.objects.get(id=user_id)
+        
+        if request.method == "POST":
+            # Handle form submission
+            first_name = request.POST.get("fname")
+            last_name = request.POST.get("lname")
+            email = request.POST.get("email")
+            phone = request.POST.get("phoneNo")
+            gender = request.POST.get("gender")
 
-    # Fetch the user data from the database
-    user = User.objects.get(id=user_id)
+            # Update user details
+            user.first_name = first_name
+            user.last_name = last_name
+            user.email = email
+            user.phone_number = phone
+            user.gender = gender
+            user.save()
 
-    # Pass the user data to the template
-    context = {
-        "user_id": user.id,
-        "user_name": f"{user.first_name} {user.last_name}",
-        "user_email": user.email,
-        "user_phone": user.phone_number,
-        "user_gender": user.gender,
-    }
-    return render(request, "memberspage.html", context)
+            # Feedback message
+            messages.success(request, "Profile updated successfully!")
 
+            return redirect("memberspage")  # Reload the page to reflect changes
+
+        # Pass the user data to the template for rendering
+        context = {
+            "user_id": user.id,
+            "first_name": user.first_name,
+            "last_name": user.last_name,
+            "user_email": user.email,
+            "user_phone": user.phone_number,
+            "user_gender": user.gender,
+        }
+        return render(request, "memberspage.html", context)
+    except User.DoesNotExist:
+        # Handle the case where the user doesn't exist in the database
+        messages.error(request, "User not found")
+        return redirect("login")
 
 
 
