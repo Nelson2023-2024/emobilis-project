@@ -66,11 +66,20 @@
                 <li><a href="./memberspage.php">Home</a></li>
                 <li><a href="./pricing.php">Courses</a></li>
                 <li><a href="#">Contact</a></li>
+                <li>
+                    
+                </li>
                 <li style="background: red; padding:1rem ; border-radius:10px;"><a href="./logout.php">Logout</a></li>
                 <li>    <!-- Button trigger modal -->
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
                         Update profile
                     </button></li>
+                <!-- Display the logged-in user's name in the navbar -->
+            {% if user_name %}
+                <span class="profile">Hello, {{ user_name }}</span>
+            {% else %}
+                <span class="profile">Hello, Guest</span>
+            {% endif %}
             </ul>
 
             
@@ -206,13 +215,7 @@
                         <small id="gender_error" class="text-danger"></small>
                     </div>
 
-                    <!-- Password -->
-                    <div class="form-group mb-3">
-                        <label for="password1" class="form-label">Password</label>
-                        <input id="password1" name="pass1" minlength="8" type="password" class="form-control" placeholder="Password">
-                        <small class="form-text text-muted">Enter a minimum of 8 characters</small>
-                        <small id="password1_error" class="text-danger"></small>
-                    </div>
+                    
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

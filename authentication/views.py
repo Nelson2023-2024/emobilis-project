@@ -53,6 +53,8 @@ def login(request):
         return render(request, "login.html")
 
 
+
+
 def membersPage(request):
     # Check if the user is logged in
     if "user_id" not in request.session:
@@ -60,17 +62,20 @@ def membersPage(request):
 
     # Retrieve session data
     user_id = request.session.get("user_id")
-    user_name = request.session.get("user_name", "Guest")
-    user_email = request.session.get("user_email", "Not Provided")
 
-    # Pass the session data to the template
+    # Fetch the user data from the database
+    user = User.objects.get(id=user_id)
+
+    # Pass the user data to the template
     context = {
-        "user_id": user_id,
-        "user_name": user_name,
-        "user_email": user_email,
+        "user_id": user.id,
+        "user_name": f"{user.first_name} {user.last_name}",
+        "user_email": user.email,
+        "user_phone": user.phone_number,
+        "user_gender": user.gender,
     }
-    print(context)
     return render(request, "memberspage.html", context)
+
 
 
 
