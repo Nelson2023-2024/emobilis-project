@@ -44,6 +44,18 @@
     color: red;
     font-size: 2rem;
     cursor: pointer;
+    position: absolute;
+    bottom: 30rem;
+}
+
+.person-container{
+    position: relative;
+    top: 10px;
+    cursor: pointer;
+}
+.person{
+   
+    color: #fff;
 }
 </style>
 
@@ -54,7 +66,7 @@
         <nav class="navbar">
             <div class="brand">
                 <img src="./Webicon.png" alt="Webicon">
-                <a href="/">WebDX</a>
+                <a href="/">Learnify</a>
             </div>
 
             <div class="menu-container">
@@ -63,35 +75,39 @@
             <ul id="nav-links-container" style="align-items: center;" >
 
                 <i class="fa fa-times" aria-hidden="true"></i>
-                <li><a href="./memberspage.php">Home</a></li>
-                <li><a href="./pricing.php">Courses</a></li>
-                <li><a href="#">Contact</a></li>
+                <li><a href="{% url 'memberspage' %}">Home</a></li>
+                <li><a href="{% url 'pricing' %}">Courses</a></li>
+                {% comment %} <li><a href="{% url 'contact' %}">Contact</a></li> {% endcomment %}
                 <li>
                     
                 </li>
                 <li style="background: red; padding:1rem ; border-radius:10px;"><a href="{% url 'logout' %}">Logout</a></li>
-                <li>    <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                        Update profile
-                    </button></li>
-                <!-- Display the logged-in user's name in the navbar -->
-            {% if first_name and last_name %}
-                <span class="profile">Hello, {{ first_name }} {{last_name}}</span>
-            {% else %}
-                <span class="profile">Hello, Guest</span>
-            {% endif %}
+               <!-- Button trigger modal -->
+                    
+                    <p type="" class="person-container" data-toggle="modal" data-target="#exampleModal">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="200" height="30" fill="currentColor" class="bi bi-person-fill person" viewBox="0 0 16 16">
+                            <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
+                          </svg>
+                    </p>
             </ul>
-
-            
+                    
         </nav>
         <div class="username">
         </div>
 
+      
+       
         <div class="main-content">
+            <!-- Display the logged-in user's name in the navbar -->
+       {% if first_name and last_name %}
+       <span class="profile ">Hello, {{ first_name }} {{last_name}}</span>
+   {% else %}
+       <span class="profile">Hello, Guest</span>
+   {% endif %}
             <div class="text">
                 <h1>Coding is <span style="color: #fff724;" class="auto-type">easy</span>
                 </h1>
-                <p>Welcome to webDX, your one-stop destination for learning HTML, CSS, JavaScript, and PHP. Whether
+                <p>Welcome to Learnify, your one-stop destination for learning HTML, CSS, JavaScript, and PHP. Whether
                     you're a beginner looking to start your coding journey or an experienced developer seeking to
                     enhance your skills, we've got you covered. Our comprehensive courses and tutorials will empower you
                     with the knowledge and tools you need to succeed in the world of web development.</p>
@@ -104,10 +120,10 @@
     <section class="about">
         <h1>About</h1>
         <div class="about-sub">
-            <img src="./Images/images/Image_post_.svg" alt="" class="about__img-1" loading="lazy">
+            <img src="{% static './Images/images/Image_post_.svg' %}" alt="" class="about__img-1" loading="lazy">
             <div class="sub-sub-about">
                 <h2>Why we Teach</h2>
-                <p>At <b>WebDX</b>, our mission is to empower individuals from all walks of
+                <p>At <b>Learnify</b>, our mission is to empower individuals from all walks of
                     life to discover the
                     incredible world of coding and web development. We believe that coding is not just a technical
                     skill; it's a gateway to creativity, problem-solving, and limitless possibilities.
@@ -120,13 +136,13 @@
         <div class="about-sub">
             <div class="sub-sub-about">
                 <h2>Content Overview</h2>
-                <p>At <b>WebDX</b>, we offer a comprehensive range of coding courses and tutorials designed to cater to
+                <p>At <b>Learnify</b>, we offer a comprehensive range of coding courses and tutorials designed to cater to
                     learners of all levels, from beginners to advanced programmers. Our platform is your one-stop
                     destination for mastering the fundamental web development technologies: HTML/CSS, JavaScript, and
                     PHP.</p>
                 <button class="btn">Register Now</button>
             </div>
-            <img src="./Images/images/going_up.svg" alt="" class="about__img-2" loading="lazy">
+            <img src="{% static './Images/images/going_up.svg' %}" alt="" class="about__img-2" loading="lazy">
         </div>
         </div>
 
@@ -144,7 +160,7 @@
 
 
     <div class="subscribe">
-        <h2>Stay up to date with WebDX offers and news</h2>
+        <h2>Stay up to date with Learnify offers and news</h2>
         <form action="" class="subscribe-box">
             <input type="text" name="email" placeholder="Enter your email adress" required />
             <button>Submit</button>
