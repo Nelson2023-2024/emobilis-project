@@ -119,3 +119,6 @@ def pricing(request):
 
     courses = Category.objects.all()
     return render(request, "pricing.html", {"courses": courses})
+
+def contact(request):
+    return render(request,"contact.html")
