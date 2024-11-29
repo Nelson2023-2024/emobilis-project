@@ -85,14 +85,16 @@
             {% for course in courses %}
             <div class="product1">
                 <h5>{{ course.product_title }}</h5>
-                <img src="{{ course.product_image }}" alt="Product Image">
+                <div class="d-flex justify-content-center">
+                    <img src="{{ course.product_image.url }}" alt="{{ course.product_title }}">
+                </div>
                 <p>{{ course.product_description }}</p>
                 <button style="height: 40px;" class="btn btn-primary">{{ course.product_price }}</button>
             </div>
             {% endfor %}
         </div>
     </div>
-
+    
     <script src="./delete.js"></script>
     <script src="./registration-admin.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
