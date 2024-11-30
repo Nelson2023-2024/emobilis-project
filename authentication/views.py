@@ -121,4 +121,19 @@ def pricing(request):
     return render(request, "pricing.html", {"courses": courses})
 
 def contact(request):
-    return render(request,"contact.html")
+    user_id = request.session.get("user_id")
+    if user_id:
+        try:
+            user = User.objects.get(id=user_id)
+            context = {
+                "fname": user.first_name,
+                "lname": user.last_name,
+                "email": user.email,
+                "phone": user.phone_number,
+            }
+        except User.DoesNotExist:
+            context = {}
+    else:
+        context = {}
+
+    return render(request, "contact.html", context)

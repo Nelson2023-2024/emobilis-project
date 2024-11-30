@@ -8,7 +8,6 @@
     {% load static %}
     <link rel="shortcut icon" href="{% static 'Images/images/hosting-services.png' %}" type="image/x-icon" />
 
-    
     <link rel="stylesheet" href="{% static 'Styles/common.css' %}">
     <link rel="stylesheet" href="{% static 'Styles/navbar.css' %}">
     <link rel="stylesheet" href="{% static 'Styles/contact.css' %}">
@@ -33,19 +32,14 @@
                 <li><a href="{% url 'pricing' %}">Pricing</a></li>
                 <li><a href="{% url 'contact' %}">Contact</a></li>
                 <li style="background: red; padding:1rem ; border-radius:10px;"><a href="{% url 'logout' %}">Logout</a></li>
-
-
-
-
             </ul>
         </nav>
 
         <div class="contact-main-text">
-            <h1>Our teams are ready to help </h1>
-
+            <h1>Our teams are ready to help</h1>
             <p>
                 Thank you for your interest in our website! If you have any questions, comments, or concerns, please
-                don't hesitate to contact me using the form below. We'll do I best to respond to your message as soon as
+                don't hesitate to contact me using the form below. We'll do our best to respond to your message as soon as
                 possible.
             </p>
             <a href="#contact">Need help?</a>
@@ -55,12 +49,11 @@
     <section class="contact-form" id="contact">
         <h1>Contact our team directly</h1>
         <form action="https://formsubmit.co/programmingtesting19@gmail.com" method="POST">
-            <input type="text" name="fname" placeholder="First name" required>
-            <input type="text" name="lname" placeholder="Last name" required>
-            <input type="email" name="email" placeholder=" Your Email adress" required>
-            <input type="text" name="phone" placeholder="Phone Number" required>
-            <textarea name="query" id="" cols="30" rows="5" placeholder="Query/Message"></textarea>
-
+            <input type="text" name="fname" placeholder="First name" value="{{ fname }}" required>
+            <input type="text" name="lname" placeholder="Last name" value="{{ lname }}" required>
+            <input type="email" name="email" placeholder="Your Email address" value="{{ email }}" required>
+            <input type="text" name="phone" placeholder="Phone Number" value="{{ phone }}" required>
+            <textarea name="query" cols="30" rows="5" placeholder="Query/Message"></textarea>
             <button type="submit">Send</button>
         </form>
     </section>
@@ -72,7 +65,7 @@
             <li><i class="fa fa-instagram" aria-hidden="true"></i>Instagram</li>
             <li><i class="fa fa-whatsapp" aria-hidden="true"></i>Whatsapp</li>
             <li><i class="fa fa-envelope" aria-hidden="true"></i>Gmail</li>
-            <li><i class="fa fa-twitter" aria-hidden="true"></i>Twiter</li>
+            <li><i class="fa fa-twitter" aria-hidden="true"></i>Twitter</li>
             <li><i class="fa fa-snapchat" aria-hidden="true"></i>Snapchat</li>
         </ul>
     </section>
@@ -83,9 +76,6 @@
     </div>
 
     <script src="{% static 'Scripts/common.js' %}"></script>
-
-
-
     <script src="https://unpkg.com/scrollreveal"></script>
     <script src="https://unpkg.com/scrollreveal@4.0.0/dist/scrollreveal.min.js"></script>
 </body>
