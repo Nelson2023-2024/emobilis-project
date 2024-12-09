@@ -48,7 +48,18 @@
 
     <section class="contact-form" id="contact">
         <h1>Contact our team directly</h1>
-        <form action="https://formsubmit.co/programmingtesting19@gmail.com" method="POST">
+
+        <!-- Display success message if available -->
+        {% if messages %}
+        <div class="messages">
+            {% for message in messages %}
+            <div class="alert">{{ message }}</div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        <form action="{% url 'contact' %}" method="POST">
+            {% csrf_token %}
             <input type="text" name="fname" placeholder="First name" value="{{ fname }}" required>
             <input type="text" name="lname" placeholder="Last name" value="{{ lname }}" required>
             <input type="email" name="email" placeholder="Your Email address" value="{{ email }}" required>

@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
-from authentication.models import User, Category
+from authentication.models import User, Category,Contact
 from django.contrib.auth.hashers import make_password, check_password
+from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 
 
@@ -122,6 +123,8 @@ def pricing(request):
 
 def contact(request):
     user_id = request.session.get("user_id")
+    context = {}
+
     if user_id:
         try:
             user = User.objects.get(id=user_id)
@@ -132,8 +135,24 @@ def contact(request):
                 "phone": user.phone_number,
             }
         except User.DoesNotExist:
-            context = {}
-    else:
-        context = {}
+            pass
+
+    if request.method == "POST":
+        first_name = request.POST.get('fname')
+        last_name = request.POST.get('lname')
+        email = request.POST.get('email')
+        phone = request.POST.get('phone')
+        query = request.POST.get('query')
+
+        contact = Contact(
+            first_name=first_name,
+            last_name=last_name,
+            email=email,
+            phone=phone,
+            query=query
+        )
+        contact.save()
+        messages.success(request, "Message sent successfully!")
+        return redirect('contact')
 
     return render(request, "contact.html", context)
