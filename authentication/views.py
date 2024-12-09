@@ -156,3 +156,27 @@ def contact(request):
         return redirect('contact')
 
     return render(request, "contact.html", context)
+
+
+
+def delete_account(request):
+    if request.method == "POST":  # Ensure the method is POST
+        user_id = request.session.get("user_id")
+        
+        try:
+            user = User.objects.get(id=user_id)
+            user.delete()  # Delete the user from the database
+            
+            # Clear session data after deletion
+            request.session.flush()
+            
+            messages.success(request, "Your account has been deleted successfully.")
+            return redirect("login")  # Redirect to the register page or another appropriate page
+        except User.DoesNotExist:
+            messages.error(request, "User not found.")
+            return redirect("register")
+    else:
+        # If the method is not POST, redirect to the members page
+        messages.info(request, "Invalid request method.")
+        return redirect("memberspage")
+

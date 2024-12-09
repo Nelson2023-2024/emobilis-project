@@ -173,73 +173,78 @@
     </div>
 
   
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Update Profile</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Update Profile</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="" method="post">
+                    {% csrf_token %}
+                    <div class="modal-body">
+                        <!-- First Name -->
+                        <div class="form-group mb-3">
+                            <label for="first_name" class="form-label">First Name</label>
+                            <input id="first_name" name="fname" type="text" class="form-control" value="{{ first_name }}" required>
+                            <small id="first_error" class="text-danger"></small>
+                        </div>
+    
+                        <!-- Last Name -->
+                        <div class="form-group mb-3">
+                            <label for="last_name" class="form-label">Last Name</label>
+                            <input id="last_name" name="lname" type="text" class="form-control" value="{{ last_name }}" required>
+                            <small id="last_error" class="text-danger"></small>
+                        </div>
+    
+                        <!-- Email -->
+                        <div class="form-group mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input id="email" name="email" type="email" class="form-control" value="{{ user_email }}" required>
+                            <small id="email_error" class="text-danger"></small>
+                        </div>
+    
+                        <!-- Phone Number -->
+                        <div class="form-group mb-3">
+                            <label for="phone" class="form-label">Phone Number</label>
+                            <input id="phone" name="phoneNo" type="tel" class="form-control" value="{{ user_phone }}" required>
+                            <small id="phone_error" class="text-danger"></small>
+                        </div>
+    
+                        <!-- Gender -->
+                        <div class="form-group mb-3">
+                            <label class="form-label">Gender</label>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="gender" id="maleRadio" value="male" {% if user_gender == 'male' %}checked{% endif %}>
+                                <label class="form-check-label" for="maleRadio">Male</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="gender" id="femaleRadio" value="female" {% if user_gender == 'female' %}checked{% endif %}>
+                                <label class="form-check-label" for="femaleRadio">Female</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="gender" id="otherRadio" value="other" {% if user_gender != 'male' and user_gender != 'female' %}checked{% endif %}>
+                                <label class="form-check-label" for="otherRadio">Others</label>
+                            </div>
+                            <small id="gender_error" class="text-danger"></small>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                    </div>
+                </form>
+                <!-- Delete Account Form -->
+                <form method="POST" action="{% url 'delete_account' %}" class="text-center mt-3">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger w-100">Delete Account</button>
+                </form>
             </div>
-            <form action="" method="post">
-                {% csrf_token %}
-                <div class="modal-body">
-                    <!-- First Name -->
-                    <div class="form-group mb-3">
-                        <label for="first_name" class="form-label">First Name</label>
-                        <input id="first_name" name="fname" type="text" class="form-control" value="{{ first_name }}" required>
-                        <small id="first_error" class="text-danger"></small>
-                    </div>
-
-                    <!-- Last Name -->
-                    <div class="form-group mb-3">
-                        <label for="last_name" class="form-label">Last Name</label>
-                        <input id="last_name" name="lname" type="text" class="form-control" value="{{ last_name }}" required>
-                        <small id="last_error" class="text-danger"></small>
-                    </div>
-
-                    <!-- Email -->
-                    <div class="form-group mb-3">
-                        <label for="email" class="form-label">Email</label>
-                        <input id="email" name="email" type="email" class="form-control" value="{{ user_email }}" required>
-                        <small id="email_error" class="text-danger"></small>
-                    </div>
-
-                    <!-- Phone Number -->
-                    <div class="form-group mb-3">
-                        <label for="phone" class="form-label">Phone Number</label>
-                        <input id="phone" name="phoneNo" type="tel" class="form-control" value="{{ user_phone }}" required>
-                        <small id="phone_error" class="text-danger"></small>
-                    </div>
-
-                    <!-- Gender -->
-                    <div class="form-group mb-3">
-                        <label class="form-label">Gender</label>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="gender" id="maleRadio" value="male" {% if user_gender == 'male' %}checked{% endif %}>
-                            <label class="form-check-label" for="maleRadio">Male</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="gender" id="femaleRadio" value="female" {% if user_gender == 'female' %}checked{% endif %}>
-                            <label class="form-check-label" for="femaleRadio">Female</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="gender" id="otherRadio" value="other" {% if user_gender != 'male' and user_gender != 'female' %}checked{% endif %}>
-                            <label class="form-check-label" for="otherRadio">Others</label>
-                        </div>
-                        <small id="gender_error" class="text-danger"></small>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Save changes</button>
-                </div>
-            </form>
         </div>
     </div>
-</div>
+    
 
     <script src="./Scripts/common.js"></script>
 

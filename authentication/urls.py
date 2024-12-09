@@ -11,6 +11,7 @@ urlpatterns = [
     path('pricing/', views.pricing, name="pricing"),
     path('contact/', views.contact, name="contact"),
     path('logout/', views.logout, name='logout'),
+    path('delete-account/', views.delete_account, name='delete_account'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
