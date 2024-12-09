@@ -1,103 +1,129 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- Bootstrap and icons -->
     {% load static %}
-    <link rel="shortcut icon" href="{% static 'Images/images/hosting-services.png' %}" type="image/x-icon" />
+    <link
+      rel="shortcut icon"
+      href="{% static 'Images/images/hosting-services.png' %}"
+      type="image/x-icon"
+    />
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="{% static 'Styles/common.css' %}">
-    <link rel="stylesheet" href="{% static 'Styles/navbar.css' %}">
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="{% static 'Styles/common.css' %}" />
+    <link rel="stylesheet" href="{% static 'Styles/navbar.css' %}" />
     <title>Pricing</title>
     <style>
-        body {
-            background: #eee;
-        }
+      body {
+        background: url("{% static 'Images/images/rainbow.jpg' %}");
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+        min-height: 100vh;
+      }
 
+      .content {
+        width: 980px;
+        margin-inline: auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 2rem 0.9rem;
+        justify-content: center;
+      }
+
+      @media (max-width: 1050px) {
         .content {
-            width: 980px;
-            margin-inline: auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            gap: 2rem .9rem;
-            justify-content: center;
+          width: 800px;
+          display: grid;
+          grid-template-columns: 1fr 1fr;
         }
+      }
 
-        @media (max-width: 1050px) {
-            .content {
-                width: 800px;
-                display: grid;
-                grid-template-columns: 1fr 1fr;
-            }
+      @media (max-width: 867px) {
+        .content {
+          width: 500px;
+          display: grid;
+          grid-template-columns: 1fr;
         }
+      }
 
-        @media (max-width: 867px) {
-            .content {
-                width: 500px;
-                display: grid;
-                grid-template-columns: 1fr;
-            }
-        }
+      .product1 {
+        display: grid;
+        justify-self: center;
+        box-shadow: 0px 0px 10px;
+        background: white;
+        padding: 1rem;
+        text-align: center;
+      }
 
-        .product1 {
-            display: grid;
-            justify-self: center;
-            box-shadow: 0px 0px 10px;
-            background: white;
-            padding: 1rem;
-            text-align: center;
-        }
+      img {
+        max-width: 100px;
+      }
 
-        img {
-            max-width: 100px;
-        }
-
-        p {
-            text-align: center;
-        }
+      p {
+        text-align: center;
+      }
     </style>
-</head>
+  </head>
 
-<body>
-    <nav class="navbar" style="background: gray;">
-        <div class="brand">
-            <a href="#">Learnify</a>
-        </div>
-        <div class="menu-container">
-            <i class="fa fa-bars" aria-hidden="true"></i>
-        </div>
-        <ul id="nav-links-container" style="align-items: center;">
-            <i class="fa fa-times" aria-hidden="true"></i>
-            <li><a href="{% url 'memberspage' %}">Home</a></li>
-            <li><a href="{% url 'pricing' %}">Courses</a></li>
-            <li><a href="{% url 'contact' %}">Contact</a></li>
-            <li style="background: red; padding:1rem ; border-radius:10px;"><a href="{% url 'logout' %}">Logout</a></li>
-        </ul>
+  <body>
+    <nav class="navbar" >
+      <div class="brand">
+        <a href="#">Learnify</a>
+      </div>
+      <div class="menu-container">
+        <i class="fa fa-bars" aria-hidden="true"></i>
+      </div>
+      <ul id="nav-links-container" style="align-items: center">
+        <i class="fa fa-times" aria-hidden="true"></i>
+        <li><a href="{% url 'memberspage' %}">Home</a></li>
+        <li><a href="{% url 'pricing' %}">Courses</a></li>
+        <li><a href="{% url 'contact' %}">Contact</a></li>
+        <li style="background: red; padding: 1rem; border-radius: 10px">
+          <a href="{% url 'logout' %}">Logout</a>
+        </li>
+      </ul>
     </nav>
 
-    <h1 class="text-center">Courses</h1>
+    <h1 class="text-center text-info">Courses</h1>
 
     <div class="contain">
-        <div class="content">
-            {% for course in courses %}
-            <div class="product1">
-                <h5>{{ course.product_title }}</h5>
-                <div class="d-flex justify-content-center">
-                    <img src="{{ course.product_image.url }}" alt="{{ course.product_title }}">
-                </div>
-                <p>{{ course.product_description }}</p>
-                <button style="height: 40px;" class="btn btn-primary">{{ course.product_price }}</button>
-            </div>
-            {% endfor %}
+      <div class="content">
+        {% for course in courses %}
+        <div class="product1">
+          <h5>{{ course.product_title }}</h5>
+          <div class="d-flex justify-content-center">
+            <img
+              src="{{ course.product_image.url }}"
+              alt="{{ course.product_title }}"
+            />
+          </div>
+          <p>{{ course.product_description }}</p>
+          <button style="height: 40px" class="btn btn-primary">
+            {{ course.product_price }}
+          </button>
         </div>
+        {% endfor %}
+      </div>
     </div>
-    
+
+    <div class="copyright mt-4">
+        &copy; All rights reserved by Nelson 2023 <br>
+        Made with <span>&hearts;</span> by Nelson
+    </div>
+
     <script src="./delete.js"></script>
     <script src="./registration-admin.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
-</body>
+  </body>
 </html>
